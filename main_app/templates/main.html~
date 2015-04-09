@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static', filename='css/frozen.css')}}>
+    <link rel="stylesheet" href={{url_for('static', filename='css/main.css')}}>
+    <title>Todolist</title>
+</head>
+<body>
+    <h2 class="nav ui-border-b">
+        {{ session['username'] }} - {{g.str_date}}
+    </h2>
+    <div class="ui-form ui-border-t">
+        <form method="post" action="/todolist" >
+            <div class="ui-form-item ui-form-item-r ui-border-b">
+                <input id="task_detail" name="task_detail" type="text" placeholder="今天任务">
+                <!-- 若按钮不可点击则添加 disabled 类 -->
+                <button type="submit" class="ui-border-l">Submit</button>
+                <div class="ui-icon-close" onclick="clearTask()"></div>
+            </div>
+        </form>
+    </div>
+    <ul class="ui-list ui-list-text ui-list-active ui-border-tb">
+        {% if g.list_task.count() != 0 %}
+        {% for task in g.list_task %}
+		<li id={{task._id}} class="task-list ui-border-t {{'selected overline' if task.complete == 1 else ''}}" >{{task.detail}}</li>
+		<span class="end_time">{{task.end_time}}</span>
+        {% endfor %}
+        {% endif %}
+    </ul>
+	<script src={{url_for('static', filename='js/jquery-1.11.2.min.js')}}></script>
+    <script type="text/javascript">
+        function clearTask(){
+            document.getElementById('task_detail').value = '';
+        }
+		$('.task-list').click(function(){
+			var id = $(this).attr("id");
+			var span_dom = $(this).next();
+			var uri = '/todolist/complete/' + id;
+			classes = $(this).attr("class");
+			if( $.inArray('selected',classes.split(" ")) < 0){
+				window.location = uri;
+			}else{
+				var time = new Date(span_dom.text());
+				alert('Task finished at '+time.getHours()+':'+time.getMinutes());	
+			}
+		});
+    </script>
+</body>
+</html>

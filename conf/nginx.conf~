@@ -1,0 +1,23 @@
+server {
+    listen 81;
+    server_name 127.0.0.1 ;
+    location / {
+		root /root/todo-list/www;
+ 		index index.html index.htm;
+		add_header Access-Control-Allow-Origin *;
+    }
+    location /todolist {
+		include uwsgi_params;  
+		#uwsgi_pass unix:/tmp/todo_list_main.sock;
+		uwsgi_pass 127.0.0.1:2026;
+		#proxy_set_header Host $http_host;
+		#proxy_pass http://127.0.0.1:2026;
+		#add_header Cache-Control no-cache;
+    }
+    #location /admin{
+	#	proxy_set_header Host http_host;
+	#	proxy_pass http://127.0.0.1:2025;
+	#	add_header Cache-Control no-cache;
+    #}
+}
+

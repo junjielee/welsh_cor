@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{url_for('static', filename='css/frozen.css')}}>
+    <link rel="stylesheet" href={{url_for('static', filename='css/main.css')}}>
+    <title>Login</title>
+</head>
+<body>
+    <h2 class="nav ui-border-b">
+        TodoList-Login
+    </h2>
+    <form method='post' action="/todolist/login" >
+        <div class="ui-form ui-border-t">
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="text" placeholder="name" name="name" id="name-input">
+                <div class="ui-icon-close" onclick="clearName()"></div>
+            </div>
+            <div class="ui-form-item ui-form-item-pure ui-border-b">
+                <input type="password" placeholder="password" name="password" id="password-input">
+                <div class="ui-icon-close" onclick="clearPassword()"></div>
+            </div>
+        </div>
+        <div class="ui-btn-group-tiled ui-btn-wrap">
+            <button class="ui-btn-lg ui-btn-primary" type="submit">登陆</button>
+            <button class="ui-btn-lg" type="reset">重置</button>
+        </div>
+    </form>
+	{% if status.ret == 0 %}
+	<div class="ui-tips ui-tips-warn">
+		<i></i>{{status.event}}
+	</div>
+	{% endif %}
+    <script>
+        function clearName(){
+            var dom_name_input = document.getElementById('name-input');
+            dom_name_input.value = '';
+        }
+        function clearPassword(){
+            var dom_password_input = document.getElementById('password-input');
+            dom_password_input.value = '';
+        }
+        
+    </script>
+</body>
+</html>

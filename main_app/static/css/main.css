@@ -1,0 +1,28 @@
+h2{
+    display: block;
+    /*-webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;*/
+}
+.nav {
+    background-color: rgba(255,242,183,.95);
+    padding-left: 15px;
+    line-height: 45px;
+    font-size: 16px;
+    color: #00A5E3;
+    /*position: fixed;*/
+    top: 0;
+    height: 45px;
+    width: 100%;
+    /*z-index: 10;*/
+    -webkit-box-sizing: border-box;
+    text-align: center;
+}
+
+.ui-icon-close{
+    cursor: pointer;
+}
+.overline {
+    text-decoration: line-through;
+}
