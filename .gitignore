@@ -1,0 +1,6 @@
+*.bak
+*.py[cod~]
+*.conf~
+
+__pycache__/
+deploy/

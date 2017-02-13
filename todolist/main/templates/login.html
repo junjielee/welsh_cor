@@ -29,7 +29,9 @@
         </div>
     </form>
 	{% if status.ret == 0 %}
-	<span style="width:100%;color:red;text-align:center;">{{status.event}}</span>
+	<div class="ui-tips ui-tips-warn">
+		<i></i>{{status.event}}
+	</div>
 	{% endif %}
     <script>
         function clearName(){
@@ -40,7 +42,7 @@
             var dom_password_input = document.getElementById('password-input');
             dom_password_input.value = '';
         }
-        
+
     </script>
 </body>
 </html>
